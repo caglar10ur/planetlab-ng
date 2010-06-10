@@ -1,0 +1,6 @@
+[v27]
+name=Planet-Lab 2.6.27 Testing RPMs
+baseurl=https://boot.planet-lab.org/install-rpms/planetlab-v27/
+enabled=1
+gpgcheck=1
+gpgkey=file://etc/pki/rpm-gpg/RPM-GPG-KEY-planetlab

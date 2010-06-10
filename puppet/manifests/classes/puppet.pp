@@ -23,10 +23,10 @@ class puppet {
 	}
 
 
- 	service { puppet:
-            	ensure   => true,
-             	enable   => true,
-             	require  => Package['puppet'],
-		subscribe => [ Package['puppet'], File['/etc/puppet/puppet.conf'] ],
-         }
+# 	service { puppet:
+#            	ensure   => true,
+#             	enable   => true,
+#             	require  => Package['puppet'],
+#		subscribe => [ Package['puppet'], File['/etc/puppet/puppet.conf'] ],
+#         }
 }

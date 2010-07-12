@@ -31,3 +31,6 @@ func "*" call slicetagmanager DeleteSliceTag princeton_caglar vsys_net 1
 
 func "*" call slicetagmanager AddSliceTag princeton_caglar vsys fd_bmsocket
 func "*" call slicetagmanager DeleteSliceTag princeton_caglar vsys fd_bmsocket
+
+func "*" call slicetagmanager AddSliceTag princeton_caglar net_min_rate 5000
+func "*" call slicetagmanager DeleteSliceTag princeton_caglar net_min_rate 5000

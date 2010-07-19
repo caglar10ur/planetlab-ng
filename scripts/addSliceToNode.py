@@ -27,6 +27,6 @@ except:
 
 client = func.overlord.client.Client(node_name, timeout=10, async=True)
 if client.test.ping():
-    client.vservermanager.AddSliceToNode(slice_name_fake, tags, keys)
+    client.nm.AddSliceToNode(slice_name_fake, tags, keys)
 else:
     print ("Couldn't reach to %s" % node_name)

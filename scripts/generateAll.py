@@ -62,7 +62,7 @@ for slice in slices + system_slices + controller_and_delegated_slices:
         print "GARBAGE %s" % slice["name"]
         from func.minion.modules import nm
         v = nm.VServerManager() 
-        v.DeleteSlice(slice["name"])
+        v.DeleteSliceFromNode(slice["name"])
 
     elif slice["name"] in missing_slivers:
         try:

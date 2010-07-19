@@ -34,3 +34,8 @@ func "*" call slicetagmanager DeleteSliceTag princeton_caglar vsys fd_bmsocket
 
 func "*" call slicetagmanager AddSliceTag princeton_caglar net_min_rate 5000
 func "*" call slicetagmanager DeleteSliceTag princeton_caglar net_min_rate 5000
+
+func "*" call slicetagmanager AddSliceTag princeton_caglar ip_addresses 128.112.139.25,TEST
+func "*" call slicetagmanager AddSliceTag princeton_caglar ip_addresses 128.112.139.25
+func "*" call slicetagmanager DeleteSliceTag princeton_caglar ip_addresses 128.112.139.25
+

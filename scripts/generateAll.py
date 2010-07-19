@@ -60,8 +60,8 @@ for slice in slices + system_slices + controller_and_delegated_slices:
 
     if slice["name"] in garbage_slivers:
         print "GARBAGE %s" % slice["name"]
-        from func.minion.modules import vservermanager
-        v = vservermanager.VServerManager() 
+        from func.minion.modules import nm
+        v = nm.VServerManager() 
         v.DeleteSlice(slice["name"])
 
     elif slice["name"] in missing_slivers:
@@ -82,16 +82,16 @@ for slice in slices + system_slices + controller_and_delegated_slices:
             print "IGNORING %s" % slice["name"]
         else:
             print "MISSING %s" % slice["name"]
-            from func.minion.modules import vservermanager
-            v = vservermanager.VServerManager() 
+            from func.minion.modules import nm
+            v = nm.VServerManager() 
             v.AddSliceToNode(slice["name"], filtered_tags, keys)
 
     elif slice["name"] in existing_slivers:
         #FIXME: ignoring existing slices for now
         print "EXISTING %s" % slice["name"]
         #keys = plc.GetKeys({ "person_id": slice["person_ids"], "key_type": "ssh" }, ["key"])
-        #from func.minion.modules import personmanager
-        #v = personmanager.PersonManager()
+        #from func.minion.modules import nm
+        #v = nm.PersonManager()
         #v.AddPersonToSlice(slice["name"], keys)
 
     elif slice["name"] in controller_and_delegated_slice_names:

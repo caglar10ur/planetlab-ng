@@ -9,6 +9,8 @@ sys.path.append("/usr/share/NodeManager/")
 from config import Config
 from plcapi import PLCAPI
 
+from func.minion.modules import nm
+
 # Load /etc/planetlab/session
 session = "/etc/planetlab/session"
 if os.path.exists(session):
@@ -56,15 +58,15 @@ garbage_slivers = set(slivers) - set(slice_names + system_slice_names + controll
 missing_slivers = set(slice_names + system_slice_names + controller_and_delegated_slice_names) - set(slivers)
 existing_slivers = set(slivers) - set(system_slice_names + controller_and_delegated_slice_names)
 
+for slice in garbage_slivers:
+    print "GARBAGE %s" % slice
+    v = nm.NM()
+    v.DeleteSliceFromNode(slice)
+
+
 for slice in slices + system_slices + controller_and_delegated_slices:
 
-    if slice["name"] in garbage_slivers:
-        print "GARBAGE %s" % slice["name"]
-        from func.minion.modules import nm
-        v = nm.VServerManager() 
-        v.DeleteSliceFromNode(slice["name"])
-
-    elif slice["name"] in missing_slivers:
+    if slice["name"] in missing_slivers:
         try:
             tags = plc.GetSliceTags({ "slice_tag_id" : slice["slice_tag_ids"] }, ["tagname", "value", "node_id", "nodegroup_id"]) 
             keys = plc.GetKeys({ "person_id": slice["person_ids"], "key_type": "ssh" }, ["key"])
@@ -82,16 +84,14 @@ for slice in slices + system_slices + controller_and_delegated_slices:
             print "IGNORING %s" % slice["name"]
         else:
             print "MISSING %s" % slice["name"]
-            from func.minion.modules import nm
-            v = nm.VServerManager() 
+            v = nm.NM()
             v.AddSliceToNode(slice["name"], filtered_tags, keys)
 
     elif slice["name"] in existing_slivers:
         #FIXME: ignoring existing slices for now
         print "EXISTING %s" % slice["name"]
         #keys = plc.GetKeys({ "person_id": slice["person_ids"], "key_type": "ssh" }, ["key"])
-        #from func.minion.modules import nm
-        #v = nm.PersonManager()
+        #v = nm.NM()
         #v.AddPersonToSlice(slice["name"], keys)
 
     elif slice["name"] in controller_and_delegated_slice_names:

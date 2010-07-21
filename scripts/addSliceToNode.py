@@ -20,7 +20,7 @@ slice_name_fake = "princeton_caglar_test"
 try:
     slice = plc.GetSlices(auth, slice_name)[0]
     tags = plc.GetSliceTags(auth, slice["slice_tag_ids"], ['tagname', 'value'])
-    keys = plc.GetKeys(auth, {'person_id': slice["person_ids"], 'key_type': 'ssh'}, ['key'])
+    keys = plc.GetKeys(auth, {'person_id': slice["person_ids"]}, ['key', 'key_type'])
 except:
     tags = []
     keys = []

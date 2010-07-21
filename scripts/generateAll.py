@@ -69,7 +69,7 @@ for slice in slices + system_slices + controller_and_delegated_slices:
     if slice["name"] in missing_slivers:
         try:
             tags = plc.GetSliceTags({ "slice_tag_id" : slice["slice_tag_ids"] }, ["tagname", "value", "node_id", "nodegroup_id"]) 
-            keys = plc.GetKeys({ "person_id": slice["person_ids"], "key_type": "ssh" }, ["key"])
+            keys = plc.GetKeys({ "person_id": slice["person_ids"] }, ["key", "key_type"])
         except:
             tags = []
             keys = []
@@ -90,7 +90,7 @@ for slice in slices + system_slices + controller_and_delegated_slices:
     elif slice["name"] in existing_slivers:
         #FIXME: ignoring existing slices for now
         print "EXISTING %s" % slice["name"]
-        #keys = plc.GetKeys({ "person_id": slice["person_ids"], "key_type": "ssh" }, ["key"])
+        #keys = plc.GetKeys({ "person_id": slice["person_ids"] }, ["key", "key_type"])
         #v = nm.NM()
         #v.AddPersonToSlice(slice["name"], keys)
 

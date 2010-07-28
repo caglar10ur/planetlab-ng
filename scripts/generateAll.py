@@ -3,6 +3,7 @@
 
 import os, time, sys
 import pwd, grp
+import urllib2
 
 sys.path.append("/usr/share/NodeManager/")
 
@@ -10,6 +11,25 @@ from config import Config
 from plcapi import PLCAPI
 
 from func.minion.modules import nm
+
+# check revisiom
+filename = "/var/lib/func/revision"
+value = 0
+if os.path.exists(filename):
+    f = open(filename, "r")
+    value = int(f.read().strip())
+    f.close()
+
+try:
+    remotefile = urllib2.urlopen("http://www.planet-lab.org/func/planetlab-02.cs.princeton.edu")
+    remotevalue = int(remotefile.read().strip())
+except urllib2.HTTPError:
+    remotevalue = 0
+
+if value == remotevalue:
+    print "Perfect harmony...\n\n"
+else:
+    print "Out-Of-Sync...\n\n"
 
 # Load /etc/planetlab/session
 session = "/etc/planetlab/session"

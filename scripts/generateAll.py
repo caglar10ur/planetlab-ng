@@ -17,7 +17,10 @@ filename = "/var/lib/func/revision"
 value = 0
 if os.path.exists(filename):
     f = open(filename, "r")
-    value = int(f.read().strip())
+    try:
+        value = int(f.read().strip())
+    except ValueError:
+        pass
     f.close()
 
 try:
@@ -30,6 +33,9 @@ if value == remotevalue:
     print "Perfect harmony...\n\n"
 else:
     print "Out-Of-Sync...\n\n"
+    f = open(filename, "w")
+    f.write("%d" % int(remotevalue))
+    f.close()
 
 # Load /etc/planetlab/session
 session = "/etc/planetlab/session"

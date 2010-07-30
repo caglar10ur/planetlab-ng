@@ -14,5 +14,5 @@ if __name__ == "__main__":
         sites = plc.GetSites(auth, {'enabled': True})
         for site in sites:
                 nodes = [node["hostname"] for node in plc.GetNodes(auth, site["node_ids"])]
-                print "[%s]\nhost = %s\n" % (site["login_base"], ",".join(nodes))
+                print "[%s]\nhost = %s\n\n" % (site["login_base"], ",".join(nodes))
 

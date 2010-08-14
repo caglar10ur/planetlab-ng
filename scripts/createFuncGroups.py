@@ -16,3 +16,8 @@ if __name__ == "__main__":
                 nodes = [node["hostname"] for node in plc.GetNodes(auth, site["node_ids"])]
                 print "[%s]\nhost = %s\n\n" % (site["login_base"], ",".join(nodes))
 
+        groups = plc.GetNodeGroups(auth)
+        for group in groups:
+                nodes = [node["hostname"] for node in plc.GetNodes(auth, group["node_ids"])]
+                print "[%s]\nhost = %s\n" % (group["name"], ",".join(nodes))
+

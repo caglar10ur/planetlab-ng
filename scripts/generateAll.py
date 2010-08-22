@@ -103,7 +103,7 @@ for slice in slices + system_slices + controller_and_delegated_slices:
         filtered_tags = [] 
         for tag in tags:
             if tag["node_id"] == node_id or tag["nodegroup_id"] == nodegroup_id or (tag["node_id"] == None and tag["nodegroup_id"] == None):
-                filtered_tags += tag
+                filtered_tags.append(tag)
 
         #FIXME: ignoring delegated/system slices for now
         if slice["name"] in system_slice_names + controller_and_delegated_slices:

@@ -1,6 +1,6 @@
 class cronjob {
 
-	package { 'crontabs':
+	package { "crontabs":
 		ensure => installed,
 	}
 

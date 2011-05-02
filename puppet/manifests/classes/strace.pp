@@ -1,6 +1,6 @@
 class strace {
 
-	package { 'strace': 
+	package { "strace": 
 		ensure => installed, 
 	}
 }

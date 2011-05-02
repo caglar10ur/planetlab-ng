@@ -1,6 +1,6 @@
 class wget {
 
-	package { 'wget': 
+	package { "wget": 
 		ensure => installed, 
 	}
 }

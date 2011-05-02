@@ -1,6 +1,6 @@
 class lsof {
 
-	package { 'lsof': 
+	package { "lsof": 
 		ensure => installed, 
 	}
 }
